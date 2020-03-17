@@ -16,6 +16,7 @@ public class RomanNumeralServer {
             System.out.format("Started http server: %s:%d\n", HOST, PORT);
         } catch (IOException e) {
             System.out.println("Unable to start httpServer due to: " + e.getMessage());
+            System.exit(1);
         }
     }
 }
