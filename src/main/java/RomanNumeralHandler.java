@@ -17,8 +17,8 @@ public class RomanNumeralHandler implements HttpHandler {
     /**
      * Exception class for invalid requests
      */
-    private static class RomanNumeralHandlerException extends Exception {
-        public RomanNumeralHandlerException(String message) {
+    private static class RomanNumeralHandlerException extends RuntimeException {
+        RomanNumeralHandlerException(String message) {
             super(message);
             System.out.println(message);
         }
@@ -72,21 +72,16 @@ public class RomanNumeralHandler implements HttpHandler {
         }
 
         try {
-            int intToConvert = Integer.parseInt(queryVal);
-            if(intToConvert <= 0 || intToConvert >= 256) {
-                throw new RomanNumeralHandlerException("Value to convert: " + intToConvert + " is out of range");
-            }
-
-            responseString = convertToRomanInt(intToConvert);
+            int value = Integer.parseInt(queryVal);
+            RomanNumeral rn = new RomanNumeral(value);
+            responseString = rn.romanNumeral;
         } catch (NumberFormatException e) {
             throw new RomanNumeralHandlerException("Invalid value for" + QUERYKEY + " in query string");
+        } catch (RomanNumeral.ValueOutOfBoundsException e) {
+            throw new RomanNumeralHandlerException(e.getMessage());
         }
 
         handleResponse(exchange, 200, responseString);
-    }
-
-    private String convertToRomanInt(int intToConvert) {
-        return Integer.toString(intToConvert);
     }
 
     private void handleResponse(HttpExchange exchange, int responseStatus, String response) throws IOException {
