@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Http handler for org.example.RomanNumeralServer
+ * Http handler for RomanNumeralServer
  */
 public class RomanNumeralHandler implements HttpHandler {
     public final static String PATH = "/romannumeral";
@@ -27,7 +27,7 @@ public class RomanNumeralHandler implements HttpHandler {
     }
 
     /**
-     * Returns roman numeral from the query string of the request with request path: "http://..?query=number
+     * Returns roman numeral from the query string of the request with request path: "http://.../romannumeral?query=number
      * @param exchange - HTTP request received on the server
      * @throws IOException
      */

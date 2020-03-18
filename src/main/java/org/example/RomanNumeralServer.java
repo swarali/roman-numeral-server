@@ -5,6 +5,9 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+/**
+ * Main class that initializes HTTP server
+ */
 public class RomanNumeralServer {
     public final static String HOST = "localhost";
     public final static int PORT = 8080;

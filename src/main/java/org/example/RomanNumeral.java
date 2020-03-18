@@ -22,8 +22,8 @@ public class RomanNumeral {
         }
     }
 
-    int value;
-    String romanNumeral;
+    final int value;
+    final String romanNumeral;
 
     RomanNumeral(int value) throws ValueOutOfBoundsException {
         if(value < LOWER_BOUND || value > UPPER_BOUND) {
@@ -32,6 +32,7 @@ public class RomanNumeral {
 
         this.value = value;
 
+        // Build roman numeral string for every digit in the value
         StringBuilder romanNumeralBuilder = new StringBuilder();
         int unit = 1;
         int digit;
@@ -51,7 +52,15 @@ public class RomanNumeral {
         this.romanNumeral = romanNumeralBuilder.toString();
     }
 
-    String getRomanNumeralFromDigit(int digit, String unitSymbol, String midSymbol, String maxSymbol) {
+    /**
+     * Builds Roman numeral for the digit
+     * @param digit - value of the digit. must be 0-9
+     * @param unitSymbol - roman symbol representing the unit-value. eg: I, X
+     * @param midSymbol - roman symbol representing the 5 * unit-value. eg: V, L
+     * @param maxSymbol - roman symbol representing the 10 * unit-value. eg: X, C
+     * @return Roman numeral string
+     */
+    private String getRomanNumeralFromDigit(int digit, String unitSymbol, String midSymbol, String maxSymbol) {
         switch (digit) {
             case 0:
                 return "";
