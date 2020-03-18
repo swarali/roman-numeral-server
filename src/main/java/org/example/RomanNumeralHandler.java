@@ -1,3 +1,5 @@
+package org.example;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -8,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Http handler for RomanNumeralServer
+ * Http handler for org.example.RomanNumeralServer
  */
 public class RomanNumeralHandler implements HttpHandler {
     public final static String PATH = "/romannumeral";
@@ -30,10 +32,9 @@ public class RomanNumeralHandler implements HttpHandler {
      * @throws IOException
      */
     public void handle(HttpExchange exchange) throws IOException {
-        System.out.println("Handling exchange:" + exchange);
         String requestMethod = exchange.getRequestMethod();
         URI requestURI = exchange.getRequestURI();
-        System.out.format("Received: %s, %s\n", requestMethod, requestURI);
+        System.out.format("Received: %s %s\n", requestMethod, requestURI);
 
         try {
             if(!requestMethod.equals("GET") || ! requestURI.getPath().equals(PATH)) {
@@ -48,8 +49,10 @@ public class RomanNumeralHandler implements HttpHandler {
     }
 
     private Map<String, String> getQueryMap(String queryString) {
-        String[] queries = queryString.split("&");
         Map<String, String> queryMap = new HashMap<>();
+        if(queryString == null) return queryMap;
+
+        String[] queries = queryString.split("&");
         for(String s: queries) {
             String[] splitS = s.split("=", 2);
             if(splitS.length != 2) {
@@ -76,7 +79,7 @@ public class RomanNumeralHandler implements HttpHandler {
             RomanNumeral rn = new RomanNumeral(value);
             responseString = rn.romanNumeral;
         } catch (NumberFormatException e) {
-            throw new RomanNumeralHandlerException("Invalid value for" + QUERYKEY + " in query string");
+            throw new RomanNumeralHandlerException("Invalid value for " + QUERYKEY + " in query string");
         } catch (RomanNumeral.ValueOutOfBoundsException e) {
             throw new RomanNumeralHandlerException(e.getMessage());
         }

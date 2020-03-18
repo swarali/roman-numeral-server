@@ -1,5 +1,10 @@
+package org.example;
+
 import java.util.Map;
 
+/**
+ * Represents a roman numeral
+ */
 public class RomanNumeral {
     public final static Map<Integer, String> NUM_TO_ROMAN_SYMBOL = Map.of(
             1, "I",
