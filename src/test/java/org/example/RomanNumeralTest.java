@@ -27,12 +27,14 @@ public class RomanNumeralTest {
         assertRomanNumeral(49, "XLIX");
         assertRomanNumeral(123, "CXXIII");
         assertRomanNumeral(192, "CXCII");
+        assertRomanNumeral(551, "DLI");
+        assertRomanNumeral(2786, "MMDCCLXXXVI");
     }
 
     @Test
     public void romanNumeralOutOfBound() {
         Assert.assertThrows(RomanNumeral.ValueOutOfBoundsException.class, () -> new RomanNumeral(0));
-        Assert.assertThrows(RomanNumeral.ValueOutOfBoundsException.class, () -> new RomanNumeral(256));
+        Assert.assertThrows(RomanNumeral.ValueOutOfBoundsException.class, () -> new RomanNumeral(4000));
     }
 
     void assertRomanNumeral(int val, String romanNumeral) {

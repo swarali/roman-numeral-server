@@ -11,10 +11,12 @@ public class RomanNumeral {
             5, "V",
             10, "X",
             50, "L",
-            100, "C"
+            100, "C",
+            500, "D",
+            1000, "M"
     );
     public final int LOWER_BOUND = 1;
-    public final int UPPER_BOUND = 255;
+    public final int UPPER_BOUND = 3999;
 
     static class ValueOutOfBoundsException extends RuntimeException {
         ValueOutOfBoundsException(String message) {
